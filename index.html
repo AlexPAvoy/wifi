@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Conectar a WiFi</title>
+  <title>Conectar WiFi - Hotel</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -21,7 +21,8 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.1);
       max-width: 400px;
     }
-    h1 { color: #2e7d32; }
+    h1 { color: #2e7d32; margin-bottom: 10px; }
+    p { color: #388e3c; font-size: 1.2em; }
     button {
       background: linear-gradient(145deg, #4CAF50, #2e7d32);
       color: white;
@@ -31,45 +32,45 @@
       border-radius: 12px;
       cursor: pointer;
       transition: all 0.3s ease;
+      margin-top: 20px;
     }
     button:hover { transform: scale(1.1); }
-    button:active { 
-      transform: scale(0.95); 
-      background: #66bb6a;
-    }
+    button:active { transform: scale(0.95); background: #66bb6a; }
     #mensaje {
       margin-top: 20px;
-      color: #388e3c;
-      font-size: 1.2em;
       display: none;
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <h1>Bienvenido a nuestra WiFi</h1>
-    <p>Conéctate fácilmente tocando el botón:</p>
-    <button id="btnConectar"><span id="btnText">Conectar</span></button>
+    <h1>Bienvenido al Hotel 🌿</h1>
+    <p>Conéctate al WiFi fácilmente:</p>
+    <button id="btnConectar">Conectar</button>
     <p id="mensaje"></p>
   </div>
 
   <script>
     const btn = document.getElementById("btnConectar");
-    const btnText = document.getElementById("btnText");
     const mensaje = document.getElementById("mensaje");
 
-    btn.addEventListener("click", () => {
-      btnText.innerText = "Conectando...";
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    // Detecta el sistema
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const isAndroid = /Android/.test(navigator.userAgent);
 
-      if (isIOS) {
+    if(isAndroid){
+      // Android: mensaje personalizado al abrir
+      mensaje.innerText = "¡Bienvenido al Hotel! 🌿 Ya estás conectado al WiFi.";
+      mensaje.style.display = "block";
+    }
+
+    btn.addEventListener("click", () => {
+      if(isIOS){
+        // iOS: descarga el perfil .mobileconfig
         window.location.href = "wifi.mobileconfig"; 
         mensaje.innerText = "Descargando perfil WiFi... Instálalo para conectarte 🌿";
-      } else {
-        window.location.href = "wifi.conf"; 
-        mensaje.innerText = "Descargando configuración WiFi... Ábrela para conectarte 🌿";
+        mensaje.style.display = "block";
       }
-      mensaje.style.display = "block";
     });
   </script>
 </body>
