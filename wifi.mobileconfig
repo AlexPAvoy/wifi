@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" 
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>PayloadContent</key>
+  <array>
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.wifi.managed</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadIdentifier</key>
+      <string>com.tured.wifi</string>
+      <key>PayloadUUID</key>
+      <string>12345678-1234-1234-1234-1234567890ab</string>
+      <key>PayloadDisplayName</key>
+      <string>Conectar WiFi</string>
+      <key>SSID_STR</key>
+      <string>TELCEL-Access Q3-8A58</string>
+      <key>HIDDEN_NETWORK</key>
+      <false/>
+      <key>AutoJoin</key>
+      <true/>
+      <key>EncryptionType</key>
+      <string>WPA</string>
+      <key>Password</key>
+      <string>WV5FBLDSZ4</string>
+    </dict>
+  </array>
+  <key>PayloadType</key>
+  <string>Configuration</string>
+  <key>PayloadVersion</key>
+  <integer>1</integer>
+  <key>PayloadIdentifier</key>
+  <string>com.tured.config</string>
+  <key>PayloadUUID</key>
+  <string>abcdef12-3456-7890-abcd-ef1234567890</string>
+  <key>PayloadDisplayName</key>
+  <string>Perfil WiFi TELCEL</string>
+  <key>PayloadDescription</key>
+  <string>Conexión automática a TELCEL-Access Q3-8A58</string>
+</dict>
+</plist>
