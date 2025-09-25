@@ -17,7 +17,7 @@
       <key>PayloadDisplayName</key>
       <string>Conectar WiFi</string>
       <key>SSID_STR</key>
-      <string>TELCEL-Access Q3-8A58</string>
+      <string>P1Alumnos</string>
       <key>HIDDEN_NETWORK</key>
       <false/>
       <key>AutoJoin</key>
@@ -25,7 +25,7 @@
       <key>EncryptionType</key>
       <string>WPA</string>
       <key>Password</key>
-      <string>WV5FBLDSZ4</string>
+      <string>@3estudia3nLaUn1</string>
     </dict>
   </array>
   <key>PayloadType</key>

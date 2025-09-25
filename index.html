@@ -2,66 +2,171 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Conectar WiFi - Hotel</title>
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
     body {
       font-family: Arial, sans-serif;
-      background: #f9fff9;
+      background: linear-gradient(135deg, #f9fff9 0%, #e8f5e9 100%);
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
+      min-height: 100vh;
+      padding: 20px;
     }
+    
     .card {
       text-align: center;
       background: white;
-      padding: 40px;
+      padding: clamp(20px, 5vw, 40px);
       border-radius: 20px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-      max-width: 400px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+      transition: transform 0.3s ease;
     }
-    h1 { color: #2e7d32; margin-bottom: 10px; }
-    p { color: #388e3c; font-size: 1.2em; }
+    
+    h1 { 
+      color: #2e7d32; 
+      margin-bottom: 15px;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+    }
+    
+    .subtitle {
+      color: #388e3c; 
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      margin-bottom: 30px;
+    }
+    
+    .wifi-icon {
+      font-size: clamp(3rem, 10vw, 5rem);
+      margin: 20px 0;
+      color: #4CAF50;
+    }
+    
     button {
       background: linear-gradient(145deg, #4CAF50, #2e7d32);
       color: white;
-      font-size: 1.5em;
-      padding: 15px 40px;
+      font-size: clamp(1.2rem, 4vw, 1.8rem);
+      padding: clamp(15px, 4vw, 20px) clamp(30px, 8vw, 50px);
       border: none;
-      border-radius: 12px;
+      border-radius: 15px;
       cursor: pointer;
       transition: all 0.3s ease;
-      margin-top: 20px;
+      margin: 20px 0;
+      width: 100%;
+      max-width: 350px;
+      box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+      font-weight: bold;
+      letter-spacing: 1px;
     }
-    button:hover { transform: scale(1.1); }
-    button:active { transform: scale(0.95); background: #66bb6a; }
+    
+    button:hover { 
+      transform: scale(1.05); 
+      box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+    }
+    
+    button:active { 
+      transform: scale(0.98); 
+      background: #66bb6a; 
+    }
+    
     #mensaje {
-      margin-top: 20px;
+      margin-top: 25px;
+      padding: 15px;
+      border-radius: 10px;
+      background-color: #e8f5e9;
+      color: #2e7d32;
+      font-size: clamp(0.9rem, 3vw, 1.1rem);
       display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .instructions {
+      margin-top: 25px;
+      text-align: left;
+      background: #f1f8e9;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: clamp(0.85rem, 2.5vw, 1rem);
+      color: #33691e;
+      display: none;
+    }
+    
+    .instructions h3 {
+      margin-bottom: 10px;
+      color: #2e7d32;
+    }
+    
+    .instructions ol {
+      padding-left: 20px;
+    }
+    
+    .instructions li {
+      margin-bottom: 8px;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    /* Estilos específicos para pantallas muy pequeñas */
+    @media (max-width: 350px) {
+      .card {
+        padding: 15px;
+      }
+      
+      button {
+        padding: 12px 20px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="card">
     <h1>Bienvenido al Hotel 🌿</h1>
-    <p>Conéctate al WiFi fácilmente:</p>
-    <button id="btnConectar">Conectar</button>
+    <p class="subtitle">Conéctate al WiFi fácilmente</p>
+    
+    <div class="wifi-icon">📶</div>
+    
+    <button id="btnConectar">Conectar al WiFi</button>
+    
     <p id="mensaje"></p>
+    
+    <div id="instrucciones" class="instructions">
+      <h3>Instrucciones para iOS:</h3>
+      <ol>
+        <li>Se descargará un perfil de configuración</li>
+        <li>Ve a Ajustes > General > Perfiles de dispositivo</li>
+        <li>Selecciona el perfil del Hotel y tócalo para instalarlo</li>
+        <li>Sigue las instrucciones en pantalla</li>
+      </ol>
+    </div>
   </div>
 
   <script>
     const btn = document.getElementById("btnConectar");
     const mensaje = document.getElementById("mensaje");
+    const instrucciones = document.getElementById("instrucciones");
 
-    // Detecta el sistema
+    // Detecta el sistema operativo
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     const isAndroid = /Android/.test(navigator.userAgent);
 
+    // Mostrar mensaje automático para Android
     if(isAndroid){
-      // Android: mensaje personalizado al abrir
       mensaje.innerText = "¡Bienvenido al Hotel! 🌿 Ya estás conectado al WiFi.";
       mensaje.style.display = "block";
+    } else if(isIOS) {
+      // Mostrar instrucciones para iOS
+      instrucciones.style.display = "block";
     }
 
     btn.addEventListener("click", () => {
@@ -69,6 +174,18 @@
         // iOS: descarga el perfil .mobileconfig
         window.location.href = "wifi.mobileconfig"; 
         mensaje.innerText = "Descargando perfil WiFi... Instálalo para conectarte 🌿";
+        mensaje.style.display = "block";
+      } else if(isAndroid) {
+        // Android: intenta abrir configuración WiFi
+        mensaje.innerText = "Redireccionando a configuración WiFi...";
+        mensaje.style.display = "block";
+        // Intentar abrir configuración WiFi (puede no funcionar en todos los dispositivos)
+        setTimeout(() => {
+          window.location.href = "wifi://";
+        }, 1000);
+      } else {
+        // Para otros dispositivos
+        mensaje.innerText = "Por favor, conéctate manualmente a la red WiFi del hotel";
         mensaje.style.display = "block";
       }
     });
